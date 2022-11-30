@@ -18,7 +18,6 @@ function AssignmentList() {
         course_id: id
       });
     
-
     useEffect(() => {
         fetch(`/courses/${id}/assignments`)
         .then((r) => r.json())
