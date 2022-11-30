@@ -130,7 +130,6 @@ function Assignment() {
                                 )
                             })}
                     </div>
-
                 </div>
             :
                 destructuredIds.indexOf(user?.id) !== -1 ?
