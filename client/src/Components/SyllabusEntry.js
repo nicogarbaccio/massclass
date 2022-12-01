@@ -43,7 +43,7 @@ function SyllabusEntry({ entry, onDeleteEntry, onUpdateEntry }) {
     return (
         <div className="text-left my-6 ml-4">
             <span className="font-bold">{entry.date.slice(5)}</span> <span>&mdash; {entry.assignment}</span>
-            {user?.admin ? 
+            {user?.admin ?
                 <div>
                     <i className="fa-solid fa-xmark mx-2 cursor-pointer text-xs" onClick={handleDeleteEntry}></i>
                     <i class="fa-solid fa-pen-to-square cursor-pointer text-xs" onClick={toggleShowForm}></i>

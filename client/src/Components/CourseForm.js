@@ -54,7 +54,11 @@ function CourseForm( {setCourses, courses} ) {
                 <input type="text" id="subject" placeholder="Course Subject" name="subject" value={formData.subject} onChange={handleChange} />
             </div>
             <div>
-                <input type="text" id="length" placeholder="Course Length" name="length" value={formData.length} onChange={handleChange} />
+                <select id="length" name="length" value={formData.length} onChange={handleChange} >
+                    <option value="">Choose a length</option>
+                    <option value="full year">Full year</option>
+                    <option value="semester">Semester</option>
+                </select>
             </div>
             <div>
                 <input type="text" id="days" placeholder="Course Days" name="days " value={formData.days} onChange={handleChange} />
@@ -63,7 +67,8 @@ function CourseForm( {setCourses, courses} ) {
                 <input type="text" id="code" placeholder="Course Code" name="code" value={formData.code} onChange={handleChange} />
             </div>
             <div>
-                <input type="checkbox" id="remote" name="remote" value={formData.remote} onChange={handleChange} />
+                Remote?
+                <input type="checkbox" id="remote" name="remote" value={formData.remote} onChange={handleChange} checked />
             </div>
         </form>
     )
