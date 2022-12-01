@@ -68,17 +68,13 @@ function Announcement() {
                 <p className='my-3'>{announcement.created_at.slice(0, 10)}</p>
                 <p>{parse(announcement.body)}</p>
             </div>
-
             {user?.admin ?
-                <>
+                <div>
                 <button onClick={toggleEdit} className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-3 py-1 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mt-6 block">Edit Announcement</button>
                 <button onClick={handleDeleteAnnouncement} className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-3 py-1 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mt-6 block">Delete Announcement</button>
-    
                 <form onSubmit={handlePatch} className={show ? "show w-1/2 mt-4" : "hide"}>
-
                     <input type="text" id="title" placeholder="Title" name="title" value={formData.title} onChange={handleChange} className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"></input>
-
-                    <Editor 
+                    <Editor
                         editor={EditorState}
                         data={formData.body}
                         onChange={(editor) => {
@@ -86,11 +82,9 @@ function Announcement() {
                             setFormData({ ...formData, [announcement.body]: data })
                         }}
                     /> 
-                    
                     <button type='submit' className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-3 py-1 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 my-8">Submit</button>
-
                 </form>
-                </>
+                </div>
             :
                 null
             }

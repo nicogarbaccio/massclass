@@ -12,6 +12,9 @@ class AnnouncementsController < ApplicationController
 
     def create
         announcement = Announcement.create!(announcement_params)
+        # if announcement.save
+        #     PostMailer.post_email(announcement.students, announcement.course.title).deliver_now
+        # end
         render json: announcement, status: :created
     end
 

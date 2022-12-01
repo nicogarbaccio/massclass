@@ -5,7 +5,7 @@ import { UserContext } from '../Context/user';
 function Home() {
 
     const navigate = useNavigate();
-    const { user, setUser } = useContext(UserContext)
+    const { user } = useContext(UserContext)
 
     return (
         <div>

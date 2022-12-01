@@ -22,10 +22,10 @@ function DiscussionPostList({ discussionId }) {
     })
     }, [discussionId])
 
-    function handlePostChange(e){
-        const { name, value } = e.target;
-        setPostData({ ...postData, [name]: value });
-    }
+    // function handlePostChange(e){
+    //     const { name, value } = e.target;
+    //     setPostData({ ...postData, [name]: value });
+    // }
 
     function handleSubmit(e){
         e.preventDefault();

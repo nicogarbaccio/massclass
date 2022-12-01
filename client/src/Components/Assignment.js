@@ -113,7 +113,7 @@ function Assignment() {
                         <Editor
                         editor={EditorState}
                         data={formDataPatch.description}
-                        onChange={(event, editor) => {
+                        onChange={(editor) => {
                             const data = editor.getData()
                             setFormDataPatch({ ...formDataPatch, [assignment.description]: data })
                         }}
@@ -149,7 +149,7 @@ function Assignment() {
                 <form onSubmit={handleSubmit}>
                     <input type="file" id="file" name="file"/>
                     <button type='submit' className="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-3 py-1 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mt-4">Submit</button>
-                </form>  
+                </form>
                 </div>
             }
             <div className={showConfirmation ? "show" : "hide"}>

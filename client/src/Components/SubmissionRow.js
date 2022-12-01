@@ -3,10 +3,10 @@ import React, { useEffect, useState } from 'react';
 function SubmissionRow ({ submission }) {
 
     const [grade, setGrade] = useState("")
-    const [show, setShow] = useState(false)
+    // const [show, setShow] = useState(false)
     const [letterGrade, setLetterGrade] = useState("")
     const [isLoaded, setIsLoaded] = useState(false)
-    const { id, file_url, file_name, student_id, assignment } = submission
+    const { id, file_url, file_name, assignment } = submission
 
     useEffect(() => {
         fetch(`/grades/submission/${id}`)
@@ -47,9 +47,9 @@ function SubmissionRow ({ submission }) {
        setGrade("")
    }
 
-   function toggleShowForm(){
-       setShow(!show)
-   }
+//    function toggleShowForm(){
+//        setShow(!show)
+//    }
 
     return (
         <div class="overflow-x-auto relative">
