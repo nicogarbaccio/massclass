@@ -22,8 +22,8 @@ function EmailChange() {
             })
             .then((r) => {
             if (r.ok) {
-                r.json().then((professor) => {
-                setUser(professor)
+                r.json().then((instructor) => {
+                setUser(instructor)
                 setShow(!show);
             });
             } else {

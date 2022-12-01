@@ -13,7 +13,7 @@ class InstructorsController < ApplicationController
             instructor = Instructor.create!(instructor_params)
             session[:user_id] = instructor.id
             session[:is_instructor] = 1
-            render json: professor, status: :created
+            render json: instructor, status: :created
         end
     end
 
