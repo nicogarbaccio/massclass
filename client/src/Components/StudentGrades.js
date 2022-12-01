@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { NavLink, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { UserContext } from '../Context/user';
-import SubmissionRow from './SubmissionRow';
 
 function StudentGrades() {
 
