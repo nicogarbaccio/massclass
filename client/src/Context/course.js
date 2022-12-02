@@ -6,10 +6,10 @@ function CourseProvider({ children }) {
     const [currentCourse, setCurrentCourse] = useState(null);
 
     return (
-        <CourseContext.Provider value={{ currentCourse, setCurrentCourse }}>
-            {children}
-        </CourseContext.Provider>
-    )
-}
+      <CourseContext.Provider value={{ currentCourse, setCurrentCourse }}>
+        {children}
+      </CourseContext.Provider>
+    );
+  }
 
-export { CourseContext, CourseProvider }
+export { CourseContext, CourseProvider };

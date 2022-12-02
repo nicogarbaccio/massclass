@@ -1,19 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect} from "react";
 
 const UserContext = React.createContext();
 
-function UserProvider ({ children}) {
+function UserProvider({ children }) {
     const [user, setUser] = useState(null);
 
     useEffect(() => {
         fetch('/authorized_user')
-        .then((res) => {
-          if (res.ok) {
-            res.json().then((user) => {
+        .then((response) => {
+          if (response.ok) {
+            response.json().then((user) => {
               setUser(user);
             });
           } else {
-            res.json().then( (json) => {
+            response.json().then( (json) => {
               if (json.errors !== undefined) {
                 alert(json.errors);
               }
@@ -23,10 +23,10 @@ function UserProvider ({ children}) {
       },[]);
 
     return (
-        <UserContext.Provider value={{ user, setUser }}>
-            {children}
-        </UserContext.Provider>
-    )
-}
+      <UserContext.Provider value={{ user, setUser }}>
+        {children}
+      </UserContext.Provider>
+    );
+  }
 
-export { UserContext, UserProvider }
+export { UserContext, UserProvider };

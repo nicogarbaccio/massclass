@@ -1,8 +1,10 @@
-class AssignmentsController < ApplicationController
+class AssignmentsController < ApplicationController    
     before_action :find_assignment, only: [:show, :update, :destroy, :assignment_submissions]
+    # skip_before_action :authorized_user
+    skip_before_action :admin_user, only: [:index, :show, :assignment_submissions]
 
     def index
-        render json: Assignment.all, status: :ok
+        render json: Assignment.all
     end
 
     def show
@@ -27,7 +29,7 @@ class AssignmentsController < ApplicationController
     def assignment_submissions
         render json: @assignment.submissions
     end
-
+    
     private
 
     def assignment_params
@@ -37,5 +39,4 @@ class AssignmentsController < ApplicationController
     def find_assignment
         @assignment = Assignment.find(params[:id])
     end
-
 end

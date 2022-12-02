@@ -1,14 +1,14 @@
-import React, { useContext, useState } from 'react';
-import { UserContext } from '../Context/user';
+import { useEffect, useState } from "react";
+import { useContext } from "react";
+import { UserContext } from "../Context/user";
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import parse from 'html-react-parser';
-import { Editor, EditorState } from 'draft-js';
-import 'draft-js/dist/Draft.css';
 
 function DiscussionPost({ discussionPost, onDeletePost, onUpdatePost }) {
-
     const [show, setShow] = useState(false)
     const { user } = useContext(UserContext);
-    const { id, created_at, body, student } = discussionPost
+    const { id, created_at, body, student } = discussionPost 
     const [updatedBody, setUpdatedBody] = useState(body)
 
     function handleDeletePost(){
@@ -40,29 +40,35 @@ function DiscussionPost({ discussionPost, onDeletePost, onUpdatePost }) {
         <div className="my-7 bg-red-200 p-3">
             <p className='text-sl'><span className="font-bold">{student?.first_name} {student?.last_name}, </span><span>posted on {created_at.slice(0, 10)}</span></p>
             <p className="p-3">{parse(body)}</p>
+
             {user?.id === student.id ?
-                <div>
+                <>
                 <div class="inline-flex">
                     <button onClick={handleDeletePost} class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold text-sm py-1 px-3 rounded-l">Delete</button>
                     <button onClick={toggleShowForm} class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold text-sm py-1 px-3 rounded-r">Edit</button>
                 </div>
+
                 <form className={show ? "show" : "hide"} onSubmit={handleUpdatePost}>
-                    <Editor
-                        editor={EditorState}
+
+                    <CKEditor 
+                        editor={ClassicEditor}
                         data={updatedBody}
                         onChange={(event, editor) => {
                             const data = editor.getData()
                             setUpdatedBody(data)
                         }}
-                    />
+                    /> 
+
                     <button type='submit' class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold text-sm py-1 px-3 rounded-r mt-4">Submit</button>
-                </form>
-                </div>
+                
+                </form>              
+                </>
             :
                 null
             }
+
         </div>
     )
 }
 
-export default DiscussionPost;
+export default DiscussionPost

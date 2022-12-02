@@ -1,13 +1,14 @@
 class DiscussionsController < ApplicationController
     before_action :find_discussion, only: [:show, :update, :destroy]
+    # skip_before_action :authorized_user
     skip_before_action :admin_user, only: [:index, :show, :discussion_discussion_posts]
 
     def index
-        render json: Discussion.all, status: :ok
+        render json: Discussion.all
     end
 
     def show
-        render json: @discussion, status: :ok
+        render json: @discussion
     end
 
     def create
@@ -29,7 +30,7 @@ class DiscussionsController < ApplicationController
         discussion = Discussion.find(params[:id])
         render json: discussion.discussion_posts.order(:created_at)
     end
-
+    
     private
 
     def discussion_params
@@ -39,5 +40,4 @@ class DiscussionsController < ApplicationController
     def find_discussion
         @discussion = Discussion.find(params[:id])
     end
-
 end

@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { useParams, NavLink } from 'react-router-dom'; 
+import { useState, useEffect } from "react";
+import { useParams, NavLink, useNavigate } from 'react-router-dom'
 
-function StudentList() {
-
+function StudentList(){
     const [courseStudents, setCourseStudents] = useState([])
     const [isLoaded, setIsLoaded] = useState(false)
     const { id } = useParams();
@@ -35,4 +34,4 @@ function StudentList() {
     )
 }
 
-export default StudentList;
+export default StudentList

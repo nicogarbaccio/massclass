@@ -1,10 +1,11 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { useParams, NavLink, useNavigate } from 'react-router-dom';
-import { UserContext } from '../Context/user';
+import { useParams, NavLink, useNavigate } from 'react-router-dom'
+import { useState, useEffect } from "react";
+import { useContext } from "react";
+import { UserContext } from "../Context/user";
 import SyllabusForm from './SyllabusForm';
 import DeleteConfirmation from './DeleteConfirmation';
 
-function CourseDetails() {
+function CourseDetails({  }){
 
     const [isLoaded, setIsLoaded] = useState(false)
     const [course, setCourse] = useState([])
@@ -37,84 +38,101 @@ function CourseDetails() {
     function handleToggle() {
         setShow(!show)
     }
+    
 
     return (
-        <div>
-            <h1>{course.title} ({course.code})</h1>
-            <div>
-                {course.syllabus ?
-                    <p>
+        <div className='min-h-screen bg-slate-200 pt-10'>
+
+            <h1 className='text-3xl font-bold my-4 pl-5 underline underline-offset-8'>{course.title} ({course.code})</h1>
+
+            <div className='pl-6 text-base font-bold ml-4'>
+                {course.syllabus ?             
+                
+                    <p className='my-8'>
                         <NavLink to={`/syllabus/${course.syllabus?.id}`}>
-                            <span>Syllabus</span>
+                            <span className='hover:text-blue-700 '>Syllabus</span>
+                        </NavLink> 
+                    </p>
+
+                : 
+
+                    user.admin ?
+                    <>
+                        <h2 className='my-8'>Begin building your course by adding a description for your class.</h2> 
+                        <SyllabusForm course={course} setCourse={setCourse}/>
+                    </>
+
+                    :
+
+                    <p className='my-8'>Your instructor hasn't posted a syllabus yet!</p>
+                    
+                
+                }
+
+                <p className='my-8'>
+                    <NavLink to={`/course/${id}/assignments`}>
+                        <span className='hover:text-blue-700'>Assignments</span>
+                    </NavLink>
+                </p>
+
+                <p className='my-8'>
+                    <NavLink to={`/course/${id}/announcements`}>
+                        <span className='hover:text-blue-700'>Announcements</span>
+                    </NavLink>
+                </p>
+
+                <p className='my-8'>
+                    <NavLink to={`/course/${id}/discussion_board`}>
+                        <span className='hover:text-blue-700'>Discussion Board</span>
+                    </NavLink>
+                </p>
+
+                <p className='my-8'>
+                    <NavLink to={`/course/${id}/documents`}>
+                        <span className='hover:text-blue-700'>Course Documents</span>
+                    </NavLink>
+                </p>
+                
+
+                {user?.admin ? 
+                    <>
+                    
+                    <p className='my-8'>
+                        <NavLink to={`/course/${id}/students`}>
+                            <span className='hover:text-blue-700'>Students</span>
                         </NavLink>
                     </p>
+
+                    </>
+
                 :
-                user.admin ?
-                    <div>
-                        <h2>Add a description for your course</h2>
-                        <SyllabusForm course={course} setCourse={setCourse} />
-                    </div>
-                :
-                <p>Your instructor hasn't posted a syllabus yet!</p>
-                }
-                <div>
-                    <button>
-                        <NavLink to={`/course/${id}/announcements`}>
-                            <span>Announcements</span>
-                        </NavLink>
-                    </button>
-                </div>
-                <div>
-                    <button>
-                        <NavLink to={`/course/${id}/assignments`}>
-                            <span>Assignments</span>
-                        </NavLink>
-                    </button>
-                </div>
-                <div>
-                    <button>
-                        <NavLink to={`/course/${id}/discussion_board`}>
-                            <span>Discussion Board</span>
-                        </NavLink>
-                    </button>
-                </div>
-                <div>
-                    <button>
-                        <NavLink to={`/course/${id}/documents`}>
-                            <span>Course Documents</span>
-                        </NavLink>
-                    </button>
-                </div>
-                {user?.admin ?
-                    <div>
-                        <button>
-                            <NavLink to={`/course/${id}/students`}>
-                                <span>Students</span>
-                            </NavLink>
-                        </button>
-                    </div>
-                :
-                    <div>
-                        <button>
-                            <NavLink to={`/course/${id}/grades`}>
-                                <span>Grades</span>
-                            </NavLink>
-                        </button>
-                    </div>
+
+                    <p className='my-8'>
+                    <NavLink to={`/course/${id}/grades`}>
+                        <span className='hover:text-blue-700'>Grades</span>
+                    </NavLink>
+                    </p>
                 }
             </div>
-            <div>
-                {user?.admin ?
-                    <button onClick={handleToggle}>Delete Course</button>
-                :
-                ""
+
+                {user?. admin ?
+
+                
+                    <button onClick={handleToggle} class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 ml-5">Delete Course</button>
+                    
+                    :
+
+                    ""
+
+
                 }
+
+            <div className={show ? "show" : "hide"}>
+                <DeleteConfirmation handleToggle={handleToggle} handleDelete={handleDeleteCourse} show={show} item="Course"/>
             </div>
-            <div>
-                <DeleteConfirmation handleToggle={handleToggle} handleDelete={handleDeleteCourse} show={show} />
-            </div>
+
         </div>
     )
 }
 
-export default CourseDetails;
+export default CourseDetails

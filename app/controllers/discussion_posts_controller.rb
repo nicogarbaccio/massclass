@@ -1,13 +1,14 @@
 class DiscussionPostsController < ApplicationController
     before_action :find_discussion_post, only: [:show, :update, :destroy]
+    # skip_before_action :authorized_user
     skip_before_action :admin_user
 
     def index
-        render json: DiscussionPost.all, status: :ok
+        render json: DiscussionPost.all
     end
 
     def show
-        render json: @discussionPost, status: :ok
+        render json: @discussionPost
     end
 
     def create
@@ -24,7 +25,7 @@ class DiscussionPostsController < ApplicationController
         @discussionPost.destroy
         head :no_content
     end
-
+    
     private
 
     def discussion_post_params
@@ -34,5 +35,4 @@ class DiscussionPostsController < ApplicationController
     def find_discussion_post
         @discussionPost = DiscussionPost.find(params[:id])
     end
-
 end

@@ -10,5 +10,4 @@ class CourseDocument < ApplicationRecord
   def document_file_name
     document_file.blob.filename
   end
-  
 end

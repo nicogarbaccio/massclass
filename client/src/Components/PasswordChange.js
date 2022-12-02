@@ -1,52 +1,57 @@
-import React, { useContext, useState } from 'react';
-import { UserContext } from '../Context/user';
+import { useState, useContext} from 'react'
+import { UserContext } from "../Context/user";
 
-function PasswordChange() {
-    const { user } = useContext(UserContext);
-    const [show, setShow] = useState(true)
-    const [formData, setFormData] = useState({
-        password: "",
-        confirmPassword: "",
-    });
+export default function PasswordChange() {
 
-    const { password, confirmPassword } = formData;
+  const { user } = useContext(UserContext);
+  const [show, setShow] = useState(true)
+  const [formData, setFormData] = useState({
+    password: "",
+    confirmPassword: "",
+  });
 
-    const handleChange = (event) => {
-        const { name, value } = event.target;
-        setFormData({ ...formData, [name]: value });
-    };
+  const { password, confirmPassword } = formData;
 
-    function handleUpdate(e){
-        e.preventDefault();
-        if (password !== confirmPassword) {
-          alert("Passwords do not match.");
-          return;
-        }
-        if (user.admin) {
-          fetch(`/professors/${user?.id}`, {
-          method: 'PATCH',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(formData),
-          })
-          .then(setShow(!show))
-        } else {
-          fetch(`/students/${user?.id}`, {
-            method: 'PATCH',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(formData),
-            })
-            .then(setShow(!show))
-        }
-      };
+  const handleChange = (event) => {
+    const { name, value } = event.target;
 
-    return (
+    setFormData({ ...formData, [name]: value });
+  };
+
+  function handleUpdate(e){
+    e.preventDefault();
+
+    if (password !== confirmPassword) {
+      alert("Passwords do not match.");
+      return;
+    }
+
+    if (user.admin) {
+      fetch(`/instructors/${user?.id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+      })
+      .then(setShow(!show))
+    } else {
+      fetch(`/students/${user?.id}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+        })
+        .then(setShow(!show))
+    }
+  };
+
+  return (
     <div>
-      <div class="min-h-screen bg-slate-200 ">
+      <section class="min-h-screen bg-slate-200 ">
         <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+
           <div class={show ? "w-full p-6 bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md dark:bg-gray-800 dark:border-gray-700 sm:p-8 mb-11" : "hide"}>
               <h2 class="mb-1 text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white text-center">
                   Change Password
@@ -63,13 +68,13 @@ function PasswordChange() {
                   <button type="submit" class="w-full text-white bg-blue-500 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Reset password</button>
               </form>
           </div>
+
           <div className={show ? "hide" : "w-full p-6 bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-sm dark:bg-gray-800 dark:border-gray-700 sm:p-8 text-center font-semibold mb-11"}>
               Password succesfully changed!
           </div>
-        </div>
-      </div>
-    </div>
-    )
-}
 
-export default PasswordChange;
+        </div>
+      </section>
+    </div>
+  )
+}

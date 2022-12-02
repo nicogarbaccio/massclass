@@ -1,28 +1,26 @@
-import React, { useState, useContext } from 'react';
-import { UserContext } from '../Context/user';
-import { CourseContext } from '../Context/course';
-import { useNavigate } from 'react-router-dom';
+import { useState } from "react";
+import { useContext } from "react";
+import { UserContext } from "../Context/user";
+import { CourseContext } from "../Context/course";
+import { useNavigate } from "react-router-dom";
 
-function CourseForm( {setCourses, courses} ) {
-
+function CourseForm( { setCourses, courses } ) {
     const navigate = useNavigate();
-    const { user, setUser } = useContext(CourseContext);
-    const { currentCourse, setCurrentCourse } = useContext(CourseContext);
+    const { user, setUser } = useContext(UserContext);
+    const { currentCourse, setCurrentCourse } = useContext(CourseContext)
 
     const [formData, setFormData] = useState({
         title: "",
         subject: "",
-        instructor: user?.id,
-        length: "",
+        instructor_id: user?.id,
         days: "",
-        remote: true,
         code: Math.floor(Math.random() * 100000)
-    });
+      });
 
-    function handleChange(e) {
+    function handleChange(e){
         const { name, value } = e.target;
-        setFormData({...formData, [name]: value });
-    }
+        setFormData({ ...formData, [name]: value });
+    };
 
     function handleSubmit(e){
         e.preventDefault();
@@ -38,40 +36,37 @@ function CourseForm( {setCourses, courses} ) {
         .then(res => res.json())
         .then(newCourse => {
             setCourses([...courses, newCourse])
-            navigate(`/course/${newCourse.id}`)
+            navigate(`/course/${newCourse.id}`) 
             console.log(newCourse)
             setCurrentCourse(newCourse)
             })
+
     };
 
+    return(   
+            
+        <form onSubmit={handleSubmit} autoComplete="off" className="w-1/4 mx-auto" >
 
-    return (
-        <form onSubmit={handleSubmit}>
-            <div>
-                <input type="text" id="title" placeholder="Course Title" name="title" value={formData.title} onChange={handleChange} />
-            </div>
-            <div>
-                <input type="text" id="subject" placeholder="Course Subject" name="subject" value={formData.subject} onChange={handleChange} />
-            </div>
-            <div>
-                <select id="length" name="length" value={formData.length} onChange={handleChange} >
-                    <option value="">Choose a length</option>
-                    <option value="full year">Full year</option>
-                    <option value="semester">Semester</option>
-                </select>
-            </div>
-            <div>
-                <input type="text" id="days" placeholder="Course Days" name="days " value={formData.days} onChange={handleChange} />
-            </div>
-            <div>
-                <input type="text" id="code" placeholder="Course Code" name="code" value={formData.code} onChange={handleChange} />
-            </div>
-            <div>
-                Remote?
-                <input type="checkbox" id="remote" name="remote" value={formData.remote} onChange={handleChange} checked />
-            </div>
-        </form>
-    )
+                <div className="relative z-0 mb-6 w-full group">                
+                    <input type="text" id="title" placeholder="Course Title" name="title" value={formData.title} onChange={handleChange} className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"/>
+                </div>
+
+                <div className="relative z-0 mb-6 w-full group">                        
+                    <input type="text" id="subject" placeholder="Subject" name="subject" value={formData.subject} onChange={handleChange} className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"/>
+                </div>
+
+                <div className="relative z-0 mb-6 w-full group">                        
+                    <input type="text" id="days" placeholder="Meeting Days..." name="days" value={formData.days} onChange={handleChange} className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"/>
+                </div>
+
+                <div className="relative z-0 mb-6 w-full group">                        
+                    <input type="text" id="code" placeholder="code..." name="code" value={formData.code} className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"/>
+                </div>
+
+                <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+            </form>
+
+    );
 }
 
 export default CourseForm;

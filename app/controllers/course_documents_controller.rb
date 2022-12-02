@@ -1,13 +1,14 @@
 class CourseDocumentsController < ApplicationController
     before_action :find_course_document, only: [:show, :update, :destroy]
+    # skip_before_action :authorized_user
     skip_before_action :admin_user
 
     def index
-        render json: CourseDocument.all, status: :ok
+        render json: CourseDocument.all
     end
 
     def show
-        render json: @course_document, status: :ok
+        render json: @course_document
     end
 
     def create
@@ -28,7 +29,7 @@ class CourseDocumentsController < ApplicationController
     private
 
     def course_document_params
-        params.require(:course_document).permit(:course_id)
+        params.require(:course_document).permit(:course_id, :document_file)
     end
 
     def find_course_document

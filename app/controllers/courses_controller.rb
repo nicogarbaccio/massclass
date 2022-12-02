@@ -1,18 +1,19 @@
 class CoursesController < ApplicationController
     before_action :find_course, only: [:show, :update, :destroy]
+    # skip_before_action :authorized_user
     skip_before_action :admin_user, only: [:index, :show, :course_assignments, :course_announcements, :course_discussions, :course_course_documents]
 
     def index
-        render json: Course.all, status: :ok
+        render json: Course.all
     end
 
     def show
-        render json: @course, status: :ok
+        render json: @course
     end
 
     def create
         course = Course.create!(course_params)
-        render json: @course, status: :ok
+        render json: course, status: :created
     end
 
     def update
@@ -49,11 +50,11 @@ class CoursesController < ApplicationController
         course = Course.find(params[:id])
         render json: course.course_documents
     end
-
+    
     private
 
     def course_params
-        params.permit(:title, :subject, :remote, :length, :days, :code, :instructor_id)
+        params.permit(:title, :instructor_id, :subject, :length, :days, :code, :remote, :image)
     end
 
     def find_course

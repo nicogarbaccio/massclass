@@ -1,13 +1,13 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { UserContext } from '../Context/user';
+import { useParams, useNavigate } from 'react-router-dom'
+import { useEffect, useState } from "react";
+import { useContext } from "react";
+import { UserContext } from "../Context/user";
 import DiscussionPostList from './DiscussionPostList';
 import parse from 'html-react-parser';
-import {Editor, EditorState} from 'draft-js';
-import 'draft-js/dist/Draft.css';
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
-function Discussion() {
-
+function Discussion(){
     const [isLoaded, setIsLoaded] = useState(false)
     const [discussion, setDiscussion] = useState([])
     const [show, setShow] = useState(false)
@@ -15,6 +15,7 @@ function Discussion() {
     const { id } = useParams();
     const { user } = useContext(UserContext);
     const [formData, setFormData] = useState([]);
+
 
     useEffect(() => {
         fetch(`/discussions/${id}`)
@@ -44,7 +45,7 @@ function Discussion() {
         fetch(`/discussions/${id}`, {
             method:'DELETE'
           })
-        navigate(`/course/${discussion.course.id}/discussion_board`);
+          navigate(`/course/${discussion.course.id}/discussion_board`);
     }
 
     function handlePatch(e) {
@@ -61,9 +62,8 @@ function Discussion() {
         setShow(!show)
     }
 
-
     return (
-<div className='min-h-screen bg-slate-200 text-justify p-10'>
+        <div className='min-h-screen bg-slate-200 text-justify p-10'>
             <div>
                 <h2 className='text-2xl font-bold mb-5'>{discussion.title}</h2>
                 <p className='text-l font-bold my-3'>{discussion.created_at.slice(0, 10)}</p>
@@ -71,28 +71,38 @@ function Discussion() {
             </div>
 
             {user?.admin ?
-                <div>
+                <>
+
                 <button onClick={toggleEdit} className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-3 py-1 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mt-6 block">Edit discussion</button>
+
                 <button onClick={handleDeletediscussion} className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-3 py-1 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mt-6 block">Delete discussion</button>
+
                 <form onSubmit={handlePatch} className={show ? "show w-100 mt-3" : "hide"}>
+
                     <input type="text" id="title" placeholder="Title" name="title" value={formData.title} onChange={handleChange} className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"></input>
-                    <Editor 
-                        editor={EditorState}
+
+                    <CKEditor 
+                        editor={ClassicEditor}
                         data={formData.body}
-                        onChange={(editor) => {
+                        onChange={(event, editor) => {
                             const data = editor.getData()
-                            setFormData({ ...formData, [discussion.body]: data })
+                            setFormData({ ...formData, ["body"]: data })
                         }}
                     /> 
+
                     <button type='submit' className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-3 py-1 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 my-8">Submit</button>
+
                 </form>
-                </div>
+                </>
             :
                 null
             }
+
+
             <DiscussionPostList discussionId={id}/>
+
         </div>
     )
 }
 
-export default Discussion;
+export default Discussion

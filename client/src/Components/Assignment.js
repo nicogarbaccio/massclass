@@ -1,13 +1,13 @@
-import React, { useEffect, useState, useContext } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { UserContext } from '../Context/user';
+import { useParams, useNavigate } from 'react-router-dom'
+import { useEffect, useState } from "react";
+import { useContext } from "react";
+import { UserContext } from "../Context/user";
 import DeleteConfirmation from './DeleteConfirmation';
 import parse from 'html-react-parser';
-import { Editor, EditorState } from 'draft-js';
-import 'draft-js/dist/Draft.css';
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
-function Assignment() {
-
+function Assignment(){
     const [isLoaded, setIsLoaded] = useState(false)
     const [assignment, setAssignment] = useState([])
     const [submissions, setSubmissions] = useState([])
@@ -39,7 +39,7 @@ function Assignment() {
         setSubmissions(submissions);
         setIsLoaded(true)
     })
-    }, [id])
+    }, [])
 
     if (!isLoaded) return <h2>Loading...</h2>
 
@@ -56,7 +56,7 @@ function Assignment() {
         fetch(`/assignments/${id}`, {
             method:'DELETE'
           })
-        navigate(`/course/${assignment.course.id}/assignments`);
+          navigate(`/course/${assignment.course.id}/assignments`);
     }
 
     function handlePatch(e) {
@@ -96,7 +96,7 @@ function Assignment() {
     }
 
     return (
-<div className='min-h-screen bg-slate-200 text-justify p-10'>
+        <div className='min-h-screen bg-slate-200 text-justify p-10'>
             <div>
                 <h1 className='text-2xl font-bold text-center mb-5'>{assignment.title}</h1>
                 <p className='text-l font-bold my-3 text-center BG'>Due date: {assignment.due_date}</p>
@@ -104,22 +104,30 @@ function Assignment() {
             </div>
 
             {user?.admin ?
-                <div>
+                <>
                     <button onClick={toggleEdit} className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-3 py-1 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mt-6 block">Edit Assignment</button>
+                    
                     <button onClick={handleToggle} className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-3 py-1 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 my-6">Delete Assignment</button>
+
                     <form onSubmit={handlePatch} className={show ? "show w-1/2" : "hide"}>
+
                         <input type="text" id="due_date" placeholder="Due Date" onFocus={(e) => (e.target.type = "date")} onBlur={(e) => (e.target.type = "text")} name="due_date" value={formDataPatch.due_date} onChange={handleChange} className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"></input>
+
                         <input type="text" id="title" placeholder="title..." name="title" value={formDataPatch.title} onChange={handleChange} className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"></input>
-                        <Editor
-                        editor={EditorState}
+                        
+                        <CKEditor 
+                        editor={ClassicEditor}
                         data={formDataPatch.description}
-                        onChange={(editor) => {
+                        onChange={(event, editor) => {
                             const data = editor.getData()
-                            setFormDataPatch({ ...formDataPatch, [assignment.description]: data })
+                            setFormDataPatch({ ...formDataPatch, ["description"]: data })
                         }}
                         /> 
+                                  
                         <button type='submit' className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-3 py-1 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 my-8">Submit</button>
+
                     </form>
+
                     <div>
                         <h2 className='text-xl font-bold mb-4'>Submissions</h2>
                         {submissions.map(submission => {
@@ -130,33 +138,39 @@ function Assignment() {
                                 )
                             })}
                     </div>
-                </div>
+
+                </>
             :
-                destructuredIds.indexOf(user?.id) !== -1 ?
-                    <div>
+ 
+                destructuredIds.indexOf(user?.id) !== -1 ? 
+                    <>
                     <p className='mt-6 mb-4 font-bold'>Thank you for submitting!</p>
                     <div>
-                    {submissions.map(submission => submission.student_id === user?.id ?
+                    {submissions.map(submission => submission.student_id === user?.id ? 
                         <a download href={submission.file_url} className='ml-3 hover:text-blue-700 font-semibold'>{submission.file_name}</a>
                         :
                         null
                     )}
                     </div>
-                    </div>
+                    </>
                 :
-                <div>
+                <>
                 <p className='mt-6 mb-4 font-bold'>Submit your assignment here:</p>
                 <form onSubmit={handleSubmit}>
                     <input type="file" id="file" name="file"/>
                     <button type='submit' className="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-3 py-1 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mt-4">Submit</button>
-                </form>
-                </div>
+                </form>  
+                </>          
+                
             }
+
+
             <div className={showConfirmation ? "show" : "hide"}>
                 <DeleteConfirmation handleToggle={handleToggle} handleDelete={handleDeleteAssignment} show={showConfirmation} item="Assignment"/>
             </div>
+
         </div>
     )
 }
 
-export default Assignment;
+export default Assignment

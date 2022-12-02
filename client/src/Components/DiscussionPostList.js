@@ -1,11 +1,11 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { UserContext } from '../Context/user';
-import DiscussionPost from './DiscussionPost';
-import { Editor, EditorState } from 'draft-js';
-import 'draft-js/dist/Draft.css';
+import { useEffect, useState } from "react";
+import { useContext } from "react";
+import { UserContext } from "../Context/user";
+import DiscussionPost from "./DiscussionPost";
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
-function DiscussionPostList({ discussionId }) {
-
+function DiscussionPostList( { discussionId }) {
     const [discussionPosts, setDiscussionPosts] = useState([])
     const { user } = useContext(UserContext)
     const [postData, setPostData] = useState({
@@ -22,10 +22,10 @@ function DiscussionPostList({ discussionId }) {
     })
     }, [discussionId])
 
-    // function handlePostChange(e){
-    //     const { name, value } = e.target;
-    //     setPostData({ ...postData, [name]: value });
-    // }
+    function handlePostChange(e){
+        const { name, value } = e.target;
+        setPostData({ ...postData, [name]: value });
+    }
 
     function handleSubmit(e){
         e.preventDefault();
@@ -47,12 +47,12 @@ function DiscussionPostList({ discussionId }) {
         });
     };
 
-    function onDeletePost(deletedDiscussionPost){
+    function onDeletePost(deletedDiscussionPost){  
         const filteredDiscussionPosts = discussionPosts.filter(discussionPost => discussionPost.id !== deletedDiscussionPost.id)
         setDiscussionPosts(filteredDiscussionPosts)
     }
 
-    function onUpdatePost(updatedDiscussionPost){
+    function onUpdatePost(updatedDiscussionPost){  
         const updatedDiscussionPosts = discussionPosts.map(discussionPost => {
             if (discussionPost.id === updatedDiscussionPost.id){
                 return updatedDiscussionPost
@@ -65,31 +65,41 @@ function DiscussionPostList({ discussionId }) {
 
 
     return (
+    
         <div>
-            {user?.admin ?
-                <div>
+
+            {user?.admin ? 
+            
+                <>
                 {discussionPosts.map(discussionPost => <DiscussionPost discussionPost={discussionPost} onDeletePost={onDeletePost} onUpdatePost={onUpdatePost}/>)}
-                </div>
+                </>
 
             :
-                <div>
+                <>
                 {discussionPosts.map(discussionPost => <DiscussionPost discussionPost={discussionPost} onDeletePost={onDeletePost} onUpdatePost={onUpdatePost}/>)}
+
                 <h2 className='text-xl font-bold my-8'>Post your blog below!</h2>
+
                 <form onSubmit={handleSubmit} className="w-1/3">
-                    <Editor
-                        editor={EditorState}
+
+                    {/* <textarea type="textarea" id="body" placeholder="Description" name="body" value={postData.body} onChange={handlePostChange} rows="4" className="mt-4 block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></textarea> */}
+
+                    <CKEditor 
+                        editor={ClassicEditor}
                         data={postData.body}
-                        onChange={(editor) => {
+                        onChange={(event, editor) => {
                             const data = editor.getData()
-                            setPostData({ ...postData, [postData.body]: data })
+                            setPostData({ ...postData, ["body"]: data })
                         }}
-                    />
+                    /> 
+
                     <button type='submit' className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-3 py-1 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mt-4">Submit</button>
+
                 </form>
-                </div>
+                </>
             }
         </div>
-            )
+    )
 }
 
-export default DiscussionPostList;
+export default DiscussionPostList

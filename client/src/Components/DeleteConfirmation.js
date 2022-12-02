@@ -1,6 +1,4 @@
-import React from 'react';
-
-function DeleteConfirmation({ handleDelete, handleToggle, show, item }) {
+function DeleteConfirmation( { handleDelete, handleToggle, show, item }){
     return (
         <div class={show ? "show relative z-10" : "hide"} aria-labelledby="modal-title" role="dialog" aria-modal="true">
         <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
@@ -33,4 +31,4 @@ function DeleteConfirmation({ handleDelete, handleToggle, show, item }) {
     )
 }
 
-export default DeleteConfirmation;
+export default DeleteConfirmation

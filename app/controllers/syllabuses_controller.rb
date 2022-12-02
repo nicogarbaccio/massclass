@@ -1,9 +1,10 @@
 class SyllabusesController < ApplicationController
     before_action :find_syllabus, only: [:show, :update, :destroy]
+    # skip_before_action :authorized_user
     skip_before_action :admin_user, only: [:index, :show]
 
     def index
-        render json: Syllabus.all, status: :ok
+        render json: Syllabus.all
     end
 
     def show
@@ -24,7 +25,7 @@ class SyllabusesController < ApplicationController
         @syllabus.destroy
         head :no_content
     end
-
+    
     private
 
     def syllabus_params

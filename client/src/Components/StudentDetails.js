@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom'
+import { useState, useEffect } from "react";
 import SubmissionRow from './SubmissionRow';
 
 function StudentDetails() {
-
     const [student, setStudent] = useState("")
     const [isLoaded, setIsLoaded] = useState(false)
     const { id } = useParams();
@@ -23,8 +22,10 @@ function StudentDetails() {
 
     return (
         <div className='min-h-screen bg-slate-200 p-7'>
+            
             <h1 className='text-3xl font-bold mb-4'>{course_student_info}</h1>
             <h2 className='text-xl font-semibold mb-4'>{course.title}</h2>
+
             <div class="overflow-x-auto relative mt-10">
                 <table class="w-1/3 text-sm text-center text-gray-500 dark:text-gray-400">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
@@ -36,9 +37,12 @@ function StudentDetails() {
                     </thead>
                 </table>                
             </div>
+
             {submissions.map(submission => <SubmissionRow submission={submission} />)}
+            
         </div>
+
     )
 }
 
-export default StudentDetails;
+export default StudentDetails

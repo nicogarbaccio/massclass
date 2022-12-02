@@ -1,13 +1,14 @@
 class SubmissionsController < ApplicationController
     before_action :find_submission, only: [:show, :update, :destroy]
-    skip_before_action :admin_user
+    # skip_before_action :authorized_user
+        skip_before_action :admin_user
 
     def index
-        render json: Submission.all, status: :ok
+        render json: Submission.all
     end
 
     def show
-        render json: @submission, status: :ok
+        render json: @submission
     end
 
     def create
@@ -28,11 +29,11 @@ class SubmissionsController < ApplicationController
     def student_submissions
         render json: Submission.where(student_id: params[:id])
     end
-
+    
     private
 
     def submission_params
-        params.require(:submission).permit(:assignment_id, :student_id)
+        params.require(:submission).permit(:assignment_id, :student_id, :file)
     end
 
     def find_submission
