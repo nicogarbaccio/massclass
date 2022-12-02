@@ -2,8 +2,8 @@ import { useParams, NavLink } from 'react-router-dom'
 import { useEffect, useState } from "react";
 import { useContext } from "react";
 import { UserContext } from "../Context/user";
-import {Editor, EditorState} from 'draft-js';
-import 'draft-js/dist/Draft.css';
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 function DiscussionList( ){
     const [isLoaded, setIsLoaded] = useState(false)
@@ -80,8 +80,8 @@ function DiscussionList( ){
                         
                     {/* <textarea type="textarea" id="body" placeholder="Body" name="body" value={formData.body} onChange={handleChange} rows="4" className="mt-4 block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></textarea> */}
 
-                    <Editor 
-                        editor={EditorState}
+                    <CKEditor 
+                        editor={ClassicEditor}
                         data={formData.body}
                         onChange={(event, editor) => {
                             const data = editor.getData()

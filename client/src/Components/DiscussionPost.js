@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useContext } from "react";
 import { UserContext } from "../Context/user";
-import {Editor, EditorState} from 'draft-js';
-import 'draft-js/dist/Draft.css';
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import parse from 'html-react-parser';
 
 function DiscussionPost({ discussionPost, onDeletePost, onUpdatePost }) {
@@ -50,8 +50,8 @@ function DiscussionPost({ discussionPost, onDeletePost, onUpdatePost }) {
 
                 <form className={show ? "show" : "hide"} onSubmit={handleUpdatePost}>
 
-                    <Editor
-                        editor={EditorState}
+                    <CKEditor
+                        editor={ClassicEditor}
                         data={updatedBody}
                         onChange={(event, editor) => {
                             const data = editor.getData()

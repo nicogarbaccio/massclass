@@ -46,12 +46,12 @@ function CourseDetails(){
             <h1 className='text-3xl font-bold my-4 pl-5 underline underline-offset-8'>{course.title} ({course.code})</h1>
 
             <div className='pl-6 text-base font-bold ml-4'>
-                {course.syllabus ?             
+                {course.syllabus ?
                 
                     <p className='my-8'>
                         <NavLink to={`/syllabus/${course.syllabus?.id}`}>
                             <span className='hover:text-blue-700 '>Syllabus</span>
-                        </NavLink> 
+                        </NavLink>
                     </p>
 
                 : 

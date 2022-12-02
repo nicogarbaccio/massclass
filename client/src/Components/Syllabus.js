@@ -4,8 +4,8 @@ import { useContext } from "react";
 import { UserContext } from "../Context/user";
 import SyllabusEntry from './SyllabusEntry';
 import parse from 'html-react-parser'
-import {Editor, EditorState} from 'draft-js';
-import 'draft-js/dist/Draft.css';
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 function Syllabus( ){
     const { id } = useParams();
@@ -113,8 +113,8 @@ function Syllabus( ){
             <p className={show ? 'show text-justify my-8' : 'hide'}>{parse(syllabus.description)}</p>
 
             <form className={show ? 'hide' : 'show'} onSubmit={handlePatch}>
-                <Editor
-                    editor={EditorState}
+                <CKEditor
+                    editor={ClassicEditor}
                     data={syllabus.description}
                     onChange={(event, editor) => {
                         const data = editor.getData()

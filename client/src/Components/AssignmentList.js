@@ -2,8 +2,8 @@ import { useParams, NavLink } from 'react-router-dom'
 import { useEffect, useState } from "react";
 import { useContext } from "react";
 import { UserContext } from "../Context/user";
-import {Editor, EditorState} from 'draft-js';
-import 'draft-js/dist/Draft.css';
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 function AssignmentList( ){
     const [isLoaded, setIsLoaded] = useState(false)
@@ -82,8 +82,8 @@ function AssignmentList( ){
 
                         <input type="text" id="title" placeholder="Title" name="title" value={formData.title} onChange={handleChange} className="block py-2.5 px-1 w-full my-3 text-sm text-gray-900 bg-white border-1 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"></input>
 
-                        <Editor 
-                        editor={EditorState}
+                        <CKEditor 
+                        editor={ClassicEditor}
                         data={formData.description}
                         onChange={(event, editor) => {
                             const data = editor.getData()

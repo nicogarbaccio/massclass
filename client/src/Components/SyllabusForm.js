@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useParams, useNavigate } from 'react-router-dom'
-import {Editor, EditorState} from 'draft-js';
-import 'draft-js/dist/Draft.css';
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 function SyllabusForm( { course, setCourse } ) {
     const navigate = useNavigate();
@@ -33,8 +33,8 @@ function SyllabusForm( { course, setCourse } ) {
         <form onSubmit={handleSubmit} autoComplete="off" >
                 
                 <div className="w-3/4">
-                    <EditorState
-                        editor={EditorState}
+                    <CKEditor
+                        editor={ClassicEditor}
                         data={text}
                         onChange={(event, editor) => {
                             const data = editor.getData()
