@@ -36,7 +36,7 @@ function CourseForm( { setCourses, courses } ) {
         .then(res => res.json())
         .then(newCourse => {
             setCourses([...courses, newCourse])
-            navigate(`/course/${newCourse.id}`) 
+            navigate(`/courses/${newCourse.id}`) 
             console.log(newCourse)
             setCurrentCourse(newCourse)
             })

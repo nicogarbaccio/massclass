@@ -66,7 +66,7 @@ function Login() {
         <div className="bg-slate-200 min-h-screen flex flex-row">
         <div className="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
 
-          <h1 className="mb-8 text-4xl text-center font-bold">Agora</h1>
+          <h1 className="mb-8 text-4xl text-center font-bold">ExplorED</h1>
 
           <form onSubmit={ handleSubmit } className="bg-white px-6 py-8 rounded shadow-md text-black w-full">
 
@@ -93,7 +93,7 @@ function Login() {
             name="password"
             value={ password }
             />
-            <button type='submit' className="w-full text-center py-3 rounded bg-green-700 text-white hover:bg-violet-600 focus:outline-none my-1">Login</button>    
+            <button type='submit' className="w-full text-center py-3 rounded bg-green-700 text-white hover:bg-violet-600 focus:outline-none my-1">Login</button>
           </form>
 
             <div class="text-grey-dark mt-6">
