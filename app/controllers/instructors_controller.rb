@@ -12,11 +12,10 @@ class InstructorsController < ApplicationController
       else
         instructor = Instructor.create!(instructor_params)
         session[:user_id] = instructor.id
-        session[:is_instructor] = 1
-        if instructor.save
-          UserMailer.welcome_email(instructor).deliver_now
-        end
-        render json: instructor, status: :created
+        # if instructor.save
+        #   UserMailer.welcome_email(instructor).deliver_now
+        # end
+        render json: instructor, status: :ok
       end
     end
 
