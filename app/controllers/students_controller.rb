@@ -11,7 +11,7 @@ class StudentsController < ApplicationController
       else
         student = Student.create!(student_params)
         session[:user_id] = student.id
-        session[:is_instructor] = 0
+        # session[:is_instructor] = 0
         # if student.save
         #   UserMailer.welcome_email(student).deliver_now
         # end

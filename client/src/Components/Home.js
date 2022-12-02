@@ -2,7 +2,7 @@ import Login from "./Login";
 import SignupInstructor from "./SignupInstructor";
 import { useContext } from "react";
 import { UserContext } from "../Context/user";
-import { NavLink, useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import SignupStudent from "./SignupStudent";
 
 function Home() {
@@ -25,54 +25,30 @@ function Home() {
     return (
       <>
       {user ?
-
          user.admin ?
-
           navigate(`/instructor/${user.id}/courses`)
-
           :
-
           navigate(`/student/${user.id}/courses`)
-
-        
-        
       :
-
       <div className="bg-slate-200 min-h-screen flex flex-row">
-        <div className="container max-w-sm ml-auto flex-1 flex flex-col items-center justify-center">
+        <div className="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
           <h1 className='text-8xl font-bold my-8'>ExplorED</h1>
-          <h2 className="text-xl italic">Class wherever you are</h2>
+          <h2 className="text-xl italic mb-8">Learn wherever you are</h2>
+          <div className="container ml-auto items-center justify-center flex-col bg-slate-200 min-h-screen">
+            <button className="w-full text-center py-3 rounded bg-green-700 text-white hover:bg-violet-600 focus:outline-none my-1"><Link to='/SignupInstructor'>Sign up as an instructor</Link></button>
+            <button className="w-full text-center py-3 rounded bg-green-700 text-white hover:bg-violet-600 focus:outline-none my-1 mb-10"><Link to='/SignupStudent'>Sign up as a student</Link></button>
+          <div>
+            <h3>Already have an account?</h3>
+            <button className="w-full text-center py-3 rounded bg-green-700 text-white hover:bg-violet-600 focus:outline-none my-1"><Link to='/login'>Log in</Link></button>
+          </div>
+          </div>
         </div>
-        <SignupInstructor />
-        <SignupStudent />
+        {/* <SignupInstructor />
+        <SignupStudent /> */}
       </div>
-
       }
       </>
-
     ); 
 }
 
 export default Home;
-
-{/* <div>
-            {
-                user ?
-                    user.admin ?
-                    navigate(`/instructor/${user.id}/courses`)
-                    :
-                    navigate(`/student/${user.id}/courses`)
-                :
-                <div>
-                    <div>
-                        <h1>ExplorED</h1>
-                    </div>
-                    <button><Link to='/SignupInstructor'>Sign up as instructor</Link></button>
-                    <button><Link to='/SignupStudent'>Sign up as student</Link></button>
-                    <div>
-                        <h3>Already have an account?</h3>
-                        <button><Link to='/login'>Log in</Link></button>
-                    </div>
-                </div>
-            }
-        </div> */}

@@ -13,21 +13,14 @@ function CourseList( ){
     const [show, setShow] = useState(false)
     const { id } = useParams();
 
-    // useEffect(() => {
-    //     fetch(`/professors/${id}/courses`)
-    //     .then((r) => r.json())
-    //     .then(courses => {
-    //     setCourses(courses);
-    //     setIsLoaded(true)
-    // })
-    // }, [])
-    
-    fetch(`/instructors/${id}/courses`)
-    .then((r) => r.json())
-    .then(courses => {
+    useEffect(() => {
+        fetch(`/instructors/${id}/courses`)
+        .then((r) => r.json())
+        .then(courses => {
         setCourses(courses);
         setIsLoaded(true)
     })
+    }, [id])
 
     if (!isLoaded) return <h2>Loading...</h2>
 
@@ -48,7 +41,7 @@ function CourseList( ){
                         <NavLink to={`/course/${course.id}`} className="hover:text-blue-700" onClick={(e) => setCurrentCourse(course)}>
                             <span> - {course.title}</span>
                         </NavLink>
-                        <span>, {course.university}</span>
+                        <span>, {course.subject}</span>
                         <span>, {course.days}</span>
                         <span>, {course.code}</span>
                     </p>

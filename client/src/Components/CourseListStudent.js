@@ -14,21 +14,14 @@ function CourseListStudent( ){
         const [code, setCode] = useState("")
         const { id } = useParams();
 
-        // useEffect(() => {
-        //     fetch(`/students/${id}/courses`)
-        //     .then((r) => r.json())
-        //     .then(courses => {
-        //     setCourses(courses);
-        //     setIsLoaded(true)
-        // })
-        // }, [])
-
-        fetch(`/students/${id}/courses`)
-        .then((r) => r.json())
-        .then(courses => {
-        setCourses(courses);
-        setIsLoaded(true)
+        useEffect(() => {
+            fetch(`/students/${id}/courses`)
+            .then((r) => r.json())
+            .then(courses => {
+            setCourses(courses);
+            setIsLoaded(true)
         })
+        }, [id])
 
         if (!isLoaded) return <h2>Loading...</h2>
 
