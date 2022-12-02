@@ -40,8 +40,8 @@ function Home() {
 
       <div className="bg-slate-200 min-h-screen flex flex-row">
         <div className="container max-w-sm ml-auto flex-1 flex flex-col items-center justify-center">
-          <h1 className='text-8xl font-bold my-8'>Agora</h1>
-          <h2 className="text-xl italic">SAPERE AUDE</h2>
+          <h1 className='text-8xl font-bold my-8'>ExplorED</h1>
+          <h2 className="text-xl italic">Class wherever you are</h2>
         </div>
         <SignupInstructor />
         <SignupStudent />

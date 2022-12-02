@@ -2,7 +2,6 @@ import { useParams, NavLink, useNavigate } from 'react-router-dom'
 import { useContext } from "react";
 import { UserContext } from "../Context/user";
 import { useState, useEffect } from "react";
-import SubmissionRow from './SubmissionRow';
 
 function StudentGrades(){
 

@@ -5,7 +5,7 @@ import { UserContext } from "../Context/user";
 import SyllabusForm from './SyllabusForm';
 import DeleteConfirmation from './DeleteConfirmation';
 
-function CourseDetails({  }){
+function CourseDetails(){
 
     const [isLoaded, setIsLoaded] = useState(false)
     const [course, setCourse] = useState([])

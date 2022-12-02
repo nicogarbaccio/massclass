@@ -55,7 +55,7 @@ export default function UserProfile() {
                     </div>
                     <div class="pb-4">
                         <label for="about" class="font-semibold text-gray-700 block pb-1">Role</label>
-                        <input disabled id="email" class="bg-gray-50 border border-gray-300 text-gray-700 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 font-semibold" type="email" value={user?.admin ? "Professor" : "Student"} />
+                        <input disabled id="email" class="bg-gray-50 border border-gray-300 text-gray-700 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 font-semibold" type="email" value={user?.admin ? "Instructor" : "Student"} />
                     </div>
                     <span class="text-gray-600 pt-1 block opacity-70 text-center">Click                     
                     <NavLink to={`/password_change`}>

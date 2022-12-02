@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams, NavLink, useNavigate } from 'react-router-dom'
+import { useParams, NavLink } from 'react-router-dom'
 
 function StudentList(){
     const [courseStudents, setCourseStudents] = useState([])
