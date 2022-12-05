@@ -1,17 +1,18 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useContext } from "react";
 import { UserContext } from "../Context/user";
 
 function SignupInstructor() {
 
     const { setUser } = useContext(UserContext)
-  const [formData, setFormData] = useState({
-    first_name: "",
-    email: "",
-    last_name: "",
-    password: "",
-    confirmPassword: "",
+    const [formData, setFormData] = useState({
+      first_name: "",
+      email: "",
+      last_name: "",
+      password: "",
+      confirmPassword: "",
+      admin: "true"
   });
 
   const navigate = useNavigate();
@@ -116,9 +117,7 @@ function SignupInstructor() {
 
       <div class="text-grey-dark mt-6">
           Already have an account?{' '}
-          <a class="no-underline border-b border-blue-600 text-blue-600" href="../login/">
-               Log in
-          </a>.
+          <Link no-underline border-b border-blue-600 text-blue-600 to="./login">Log in</Link>.
       </div>
     </div>
   );

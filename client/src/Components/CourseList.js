@@ -4,6 +4,7 @@ import { UserContext } from "../Context/user";
 import { CourseContext } from "../Context/course";
 import { useEffect, useState } from "react";
 import CourseForm from './CourseForm'
+import CourseCard from './CourseCard';
 
 function CourseList( ){
     const { user } = useContext(UserContext)
@@ -38,7 +39,7 @@ function CourseList( ){
             {courses?.map(course => {
                 return (
                     <p className='font-bold my-8'>
-                        <NavLink to={`/course/${course.id}`} className="hover:text-blue-700" onClick={(e) => setCurrentCourse(course)}>
+                        <NavLink to={`/courses/${course.id}`} className="hover:text-blue-700" onClick={(e) => setCurrentCourse(course)}>
                             <span> - {course.title}</span>
                         </NavLink>
                         <span>, {course.subject}</span>

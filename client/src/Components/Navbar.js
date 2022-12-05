@@ -30,9 +30,9 @@ function Navbar(){
          
             <div className="mx-4 flex flex-wrap justify-between items-center">
               
-              <a href="" className="flex items-center">
+              <NavLink exact to="/" className="flex items-center">
                   <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white tracking-widest">ExplorED</span>
-              </a>
+              </NavLink>
 
               <button data-collapse-toggle="navbar-solid-bg" type="button" class="inline-flex justify-center items-center ml-3 text-gray-400 rounded-lg md:hidden hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-300 dark:text-gray-400 dark:hover:text-white dark:focus:ring-gray-500" aria-controls="navbar-solid-bg" aria-expanded="false" onClick={(e) => setShow(!show)}>
                 <span className="sr-only">Open main menu</span>

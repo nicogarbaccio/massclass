@@ -30,6 +30,7 @@ function App() {
       <div className='App'>
         <Navbar />
         <Routes>
+          <Route exact path='/' element={<Home />}></Route>
           <Route exact path='/SignupInstructor' element={<SignupInstructor />}></Route>
           <Route exact path='/SignupStudent' element={<SignupStudent />}></Route>
           <Route exact path='/assignment/:id' element={<Assignment />}></Route>
@@ -47,7 +48,6 @@ function App() {
           <Route exact path='/course/:id/students/:id' element={<StudentDetails />}></Route>
           <Route exact path='/course/:id/grades' element={<StudentGrades />}></Route>
           <Route exact path='/course/:id/documents' element={<CourseDocumentList />}></Route>
-          <Route exact path='/' element={<Home />}></Route>
           <Route exact path='/login' element={<Login />}></Route>
           <Route exact path='/profile/:id' element={<UserProfile />}></Route>
           <Route exact path='/password_change' element={<PasswordChange />}></Route>
