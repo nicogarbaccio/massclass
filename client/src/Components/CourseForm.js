@@ -60,8 +60,8 @@ function CourseForm( { setCourses, courses } ) {
                 <div className="relative z-0 mb-6 w-full group">
                     <select className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" name="length" id="length" onChange={handleChange}>
                         <option value="" disabled={true}>Choose a length</option>
-                        <option value="semester">Semester</option>
-                        <option value="year">Full year</option>
+                        <option value="Semester">Semester</option>
+                        <option value="Full year">Full year</option>
                     </select>
                     {/* <input type="text" id="image" placeholder="Add an image (Optional)" name="image" value={formData.image} className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"/> */}
                 </div>
