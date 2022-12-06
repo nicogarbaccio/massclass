@@ -62,7 +62,7 @@ export default function UserProfile() {
                         <span className='hover:text-black font-semibold'> here </span>
                     </NavLink>to change your password</span>
 
-                    <button onClick={handleToggle} type="submit" class="w-full text-white bg-blue-500 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 mt-5">Delete Profile</button>
+                    <button onClick={handleToggle} type="submit" class="w-full text-white bg-red-200 hover:bg-red-100 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 mt-5">Delete Profile</button>
 
                     <div className={show ? "show" : "hide"}>
                         <DeleteConfirmation handleToggle={handleToggle} handleDelete={handleDeleteProfile} show={show} item="Profile"/>

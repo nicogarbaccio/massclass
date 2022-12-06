@@ -93,12 +93,12 @@ function Login() {
             name="password"
             value={ password }
             />
-            <button type='submit' className="w-full text-center py-3 rounded bg-green-700 text-white hover:bg-violet-600 focus:outline-none my-1">Login</button>
+            <button type='submit' className="w-full text-center py-3 rounded bg-queenblue text-white hover:bg-yellow focus:outline-none my-1">Login</button>
           </form>
 
             <div class="text-grey-dark mt-6">
             Would you like to create an account?{' '}
-            <a class="no-underline border-b border-blue-600 text-blue-600" href="../">
+            <a class="no-underline border-b border-blue-600 text-charcoal hover:text-yellow" href="../">
                 Sign Up
             </a>.
           </div>

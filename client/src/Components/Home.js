@@ -36,11 +36,11 @@ function Home() {
             <h1 className='text-8xl font-bold my-8'>ExplorED</h1>
             <h2 className="text-xl italic mb-8">Learn wherever you are</h2>
             <div className="container ml-auto items-center justify-center flex-col bg-slate-200 min-h-screen">
-              <button className="w-full text-center py-3 rounded bg-green-700 text-white hover:bg-violet-600 focus:outline-none my-1"><Link to='/SignupInstructor'>Sign up as an instructor</Link></button>
-              <button className="w-full text-center py-3 rounded bg-green-700 text-white hover:bg-violet-600 focus:outline-none my-1 mb-10"><Link to='/SignupStudent'>Sign up as a student</Link></button>
+              <button className="w-full text-center py-3 rounded bg-queenblue text-white hover:bg-yellow focus:outline-none my-1"><Link to='/SignupInstructor'>Sign up as an instructor</Link></button>
+              <button className="w-full text-center py-3 rounded bg-queenblue text-white hover:bg-yellow focus:outline-none my-1 mb-10"><Link to='/SignupStudent'>Sign up as a student</Link></button>
             <div>
               <h3>Already have an account?</h3>
-              <button className="w-full text-center py-3 rounded bg-green-700 text-white hover:bg-violet-600 focus:outline-none my-1"><Link to='/login'>Log in</Link></button>
+              <button className="w-full text-center py-3 rounded bg-queenblue text-white hover:bg-yellow focus:outline-none my-1"><Link to='/login'>Log in</Link></button>
             </div>
             </div>
           </div>

@@ -8,9 +8,29 @@ module.exports = {
     'node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}'
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'yellow': '#F49D37',
+        'purple': '#140F2D',
+        'skobeloff': '#297373',
+        'queenblue': '#456990',
+        'charcoal': '#294C60',
+        'red': {
+          100: '#EF767A',
+          200: '#BA3B46'
+        }
+      },
+    },
   },
   plugins: [
     require('flowbite/plugin')
-  ],
-}
+  ]
+};
+
+// 'blue': '#3F88C5',
+// 'yellow': '#F49D37',
+// 'purple': '#140F2D',
+// 'red': {
+//   100: '#D72638',
+//   200: '#F22B29',
+// }
