@@ -16,7 +16,6 @@ function DiscussionList( ){
         body: "",
         course_id: id
       });
-    
 
     useEffect(() => {
         fetch(`/courses/${id}/discussions`)
@@ -54,10 +53,9 @@ function DiscussionList( ){
         });
     };
 
-
     return (
-        <div className='min-h-screen bg-slate-200 p-7'>
-            <h1 className='text-4xl font-bold my-8'>Discussions</h1>
+        <div className='min-h-screen bg-slate-200 p-7 flex flex-col items-center'>
+            <h1 className='text-4xl font-bold'>Discussions</h1>
                 {discussions?.map(discussion => {
                     return (
                         <p className='my-8 ml-4'>
@@ -69,17 +67,12 @@ function DiscussionList( ){
 
                     )
                 })}
-                
-    
             {user?.admin ?
                 <>
                 <h2 className='text-xl font-bold my-8'>Add a discussion</h2>
                 <form onSubmit={handleSubmit} className="w-1/2">
-
                     <input type="text" id="title" placeholder="Title" name="title" value={formData.title} onChange={handleChange} className="block py-2.5 px-1 w-full text-sm text-gray-900 bg-white border-1 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer mb-6"></input>
-                        
                     {/* <textarea type="textarea" id="body" placeholder="Body" name="body" value={formData.body} onChange={handleChange} rows="4" className="mt-4 block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"></textarea> */}
-
                     <CKEditor 
                         editor={ClassicEditor}
                         data={formData.body}
@@ -87,17 +80,13 @@ function DiscussionList( ){
                             const data = editor.getData()
                             setFormData({ ...formData, ["body"]: data })
                         }}
-                    /> 
-
-                    <button type='submit' className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-3 py-1 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mt-4">Submit</button>
-
+                    />
+                    <button type='submit' className="text-white bg-charcoal hover:bg-yellow focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-lg w-full px-3 py-1 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mt-4">Submit</button>
                 </form>
                 </>
             :
                 null
             }
-
-
          </div>
     )
 }

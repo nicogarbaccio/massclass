@@ -63,7 +63,7 @@ function Discussion(){
     }
 
     return (
-        <div className='min-h-screen bg-slate-200 text-justify p-10'>
+        <div className='min-h-screen bg-slate-200 flex p-10'>
             <div>
                 <h2 className='text-2xl font-bold mb-5'>{discussion.title}</h2>
                 <p className='text-l font-bold my-3'>{discussion.created_at.slice(0, 10)}</p>

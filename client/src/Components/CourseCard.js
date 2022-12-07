@@ -18,7 +18,7 @@ function CourseCard ({
         <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 mb-5">
             <img class="rounded-t-lg" src={image} alt={title} />
             <div class="p-5">
-                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white hover:text-blue-700"><Link to={`/courses/${id}`}>{title}</Link></h5>
+                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white hover:text-red-100"><Link to={`/courses/${id}`}>{title}</Link></h5>
                 <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{subject}</p>
                 <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{days}</p>
                 <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{length}</p>

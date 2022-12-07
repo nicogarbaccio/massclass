@@ -42,7 +42,7 @@ function Navbar(){
                     </NavLink>
                   </li>
                   <li>
-                    <NavLink to={user.admin ? `/instructor/${user.id}/courses` : `/student/${user.id}/courses`} className="mt-1 block py-2 pr-4 pl-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-yellow md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent font-semibold" aria-current="page"  onClick={(e) => setCurrentCourse(null)}>
+                    <NavLink to={user.admin ? `/instructor/${user.id}/courses` : `/student/${user.id}/courses`} className="mt-1 block py-2 pr-4 pl-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-yellow md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent font-semibold" aria-current="page"  onClick={(e) => setCurrentCourse(currentCourse)}>
                       My Courses
                     </NavLink>
                   </li>

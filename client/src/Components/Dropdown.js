@@ -37,15 +37,11 @@ function Dropdown ( { currentCourse, user } ){
                     <NavLink to={`/course/${currentCourse.id}/students`} onClick={(e) => setShow(!show)}>
                     <span className='hover:bg-gray-100 text-gray-700 block px-4 py-2 text-sm' role="menuitem" tabindex="-1" id="menu-item-5">Students</span>
                     </NavLink>
-
                 :
-
                     <NavLink to={`/course/${currentCourse.id}/grades`} onClick={(e) => setShow(!show)}>
                     <span className='hover:bg-gray-100 text-gray-700 block px-4 py-2 text-sm' role="menuitem" tabindex="-1" id="menu-item-6">Grades</span>
                     </NavLink>
-
                 }
-
                 </div>
             </div>
         </div>
