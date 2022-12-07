@@ -30,7 +30,7 @@ function CourseList( ){
     }
 
     return (
-        <div className='min-h-screen bg-slate-200 text-center items-center pt-1'>
+        <div className='min-h-screen bg-slate-200 pt-1'>
             <h1 className='text-4xl font-bold my-4'>Welcome, {user?.first_name}</h1>
             <h2 className='text-2xl font-bold my-10 mb-10'>Your courses</h2>
             <div className='flex justify-center items-center'>

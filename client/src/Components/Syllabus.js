@@ -86,7 +86,7 @@ function Syllabus( ){
     function handlePatch(e) {
         e.preventDefault()
         setShow(!show)
-        fetch(`/syllabus/${id}`, {
+        fetch(`/syllabuses/${id}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
