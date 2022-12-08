@@ -23,7 +23,7 @@ function StudentList(){
             {courseStudents.map(courseStudent => {
                 return (
                     <p className='my-3 ml-2'>
-                        <NavLink to={`/course/${id}/students/${courseStudent.id}`} className="hover:text-blue-700">
+                        <NavLink to={`/course/${id}/students/${courseStudent.id}`} className="hover:text-yellow">
                             <span className='font-semibold'>{courseStudent.course_student_info}</span>
                         </NavLink>
                         <span> - {courseStudent.course_student_email}</span>

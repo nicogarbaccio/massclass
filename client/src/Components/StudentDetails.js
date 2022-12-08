@@ -21,11 +21,9 @@ function StudentDetails() {
     const { course, course_student_info, submissions } = student
 
     return (
-        <div className='min-h-screen bg-slate-200 p-7'>
-            
+        <div className='min-h-screen bg-slate-200 p-7 flex flex-col items-center'>
             <h1 className='text-3xl font-bold mb-4'>{course_student_info}</h1>
             <h2 className='text-xl font-semibold mb-4'>{course.title}</h2>
-
             <div class="overflow-x-auto relative mt-10">
                 <table class="w-1/3 text-sm text-center text-gray-500 dark:text-gray-400">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
@@ -35,11 +33,9 @@ function StudentDetails() {
                             <th scope="col" class="py-3 pr-9">Grade</th>
                         </tr>
                     </thead>
-                </table>                
+                </table>
             </div>
-
             {submissions.map(submission => <SubmissionRow submission={submission} />)}
-            
         </div>
 
     )

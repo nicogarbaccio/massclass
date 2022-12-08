@@ -4,6 +4,14 @@ import { useContext } from "react";
 import { UserContext } from "../Context/user";
 import SyllabusForm from './SyllabusForm';
 import DeleteConfirmation from './DeleteConfirmation';
+import { UilBookOpen } from '@iconscout/react-unicons'
+import { UilPodium } from '@iconscout/react-unicons'
+import { UilCommentAltDots } from '@iconscout/react-unicons'
+import { UilFile } from '@iconscout/react-unicons'
+import { UilUsersAlt } from '@iconscout/react-unicons'
+import { UilBooks } from '@iconscout/react-unicons'
+import { UilFileCheck } from '@iconscout/react-unicons'
+import { UilTrashAlt } from '@iconscout/react-unicons'
 
 function CourseDetails(){
 
@@ -41,10 +49,11 @@ function CourseDetails(){
         <div className='min-h-screen bg-slate-200 pt-10 flex flex-col items-center'>
 
             <h1 className='text-3xl font-bold underline underline-offset-8 mb-7'>{course.title} ({course.code})</h1>
-            <div className='text-base font-bold'>
+            <div className='text-base font-bold grid grid-cols-2 gap-4'>
                 {course.syllabus ?
                     <button className="text-white bg-charcoal hover:bg-yellow focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mb-3">
                         <Link to={`/syllabus/${course.syllabus?.id}`}>
+                        <UilBooks size="140" color="#FFFFFF" />
                             Syllabus
                         </Link>
                     </button>
@@ -60,6 +69,7 @@ function CourseDetails(){
                 <p>
                     <button className="text-white bg-charcoal hover:bg-yellow focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mb-3">
                         <Link to={`/course/${id}/assignments`}>
+                        <UilBookOpen size="140" color="#FFFFFF" />
                             Assignments
                         </Link>
                     </button>
@@ -67,6 +77,7 @@ function CourseDetails(){
                 <p>
                     <button className="text-white bg-charcoal hover:bg-yellow focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mb-3">
                         <Link to={`/course/${id}/announcements`}>
+                        <UilPodium size="140" color="#FFFFFF" />
                             Announcements
                         </Link>
                     </button>
@@ -74,6 +85,7 @@ function CourseDetails(){
                 <p>
                     <button className="text-white bg-charcoal hover:bg-yellow focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mb-3">
                         <Link to={`/course/${id}/discussion_board`}>
+                        <UilCommentAltDots size="140" color="#FFFFFF" />
                             Discussion Board
                         </Link>
                     </button>
@@ -81,6 +93,7 @@ function CourseDetails(){
                 <p>
                     <button className="text-white bg-charcoal hover:bg-yellow focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mb-3">
                         <Link to={`/course/${id}/documents`}>
+                        <UilFile size="140" color="#FFFFFF" />
                             Course Documents
                         </Link>
                     </button>
@@ -89,6 +102,7 @@ function CourseDetails(){
                     <div>
                         <button className="text-white bg-charcoal hover:bg-yellow focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mb-3">
                             <Link to={`/course/${id}/students`}>
+                            <UilUsersAlt size="140" color="#FFFFFF" />
                                 Students
                             </Link>
                         </button>
@@ -96,12 +110,18 @@ function CourseDetails(){
                 :
                 <button className="text-white bg-charcoal hover:bg-yellow focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mb-3">
                     <Link to={`/course/${id}/grades`}>
+                    <UilFileCheck size="140" color="#FFFFFF" />
                         Grades
                     </Link>
                     </button>
                 }
+                </div>
+                <div className='flex flex-col items-center'>
                 {user?.admin ?
-                    <button onClick={handleToggle} class="text-white bg-red-200 hover:bg-red-100 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mt-5 mb-10">Delete Course</button>
+                        <button onClick={handleToggle} class="text-white bg-red-200 hover:bg-red-100 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mt-5 mb-10">
+                            <div className='flex gap-1'><UilTrashAlt size="20" color="#FFFFFF" />Delete Course</div>
+                        </button>
+                    
                     :
                     ""
                 }
