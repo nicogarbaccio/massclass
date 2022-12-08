@@ -11,30 +11,12 @@ function StudentGrades(){
     const { id } = useParams();
     const { user } = useContext(UserContext);
 
-    // useEffect(() => {
-    //     fetch(`/submissions/${user?.id}/grades`)
-    //     .then((r) => r.json())
-    //     .then(submissions => {
-    //     setSubmissions(submissions);
-    //     setIsLoaded(true)
-    // })
-    // }, [])
-
     fetch(`/submissions/${user?.id}/grades`)
     .then((r) => r.json())
     .then(submissions => {
     setSubmissions(submissions);
     setIsLoaded(true)
     })
-
-    // useEffect(() => {
-    //     fetch(`/courses/${id}`)
-    //     .then((r) => r.json())
-    //     .then(course => {
-    //     setCourse(course);
-    //     setIsLoaded(true)
-    // })
-    // }, [])
 
     fetch(`/courses/${id}`)
     .then((r) => r.json())
@@ -49,11 +31,9 @@ function StudentGrades(){
 
     return (
         <div className='min-h-screen bg-slate-200 p-7'>
-
             <h1 className='text-3xl font-bold mb-4'>Grades</h1>
             <h2 className='text-xl font-semibold mb-4'>{course.title}</h2>
-
-            <div class="overflow-x-auto relative mt-10">
+            <div class="overflow-x-auto relative mt-10 flex flex-col items-center">
                 <table class="w-1/3 text-sm text-center text-gray-500 dark:text-gray-400">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
@@ -62,7 +42,6 @@ function StudentGrades(){
                         </tr>
                     </thead>
                     <tbody>
- 
                         {filteredSubmissions.map(submission => {
                     return (
                         <tr className='class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"'>
@@ -71,16 +50,11 @@ function StudentGrades(){
                         </tr>
                                 )
                             })}
-
                     </tbody>
-
                 </table>
             </div>
-
             <div>
-
             </div>
-
         </div>
     )
 }

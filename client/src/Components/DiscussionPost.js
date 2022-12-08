@@ -40,16 +40,13 @@ function DiscussionPost({ discussionPost, onDeletePost, onUpdatePost }) {
         <div className="my-7 bg-red-200 p-3">
             <p className='text-sl'><span className="font-bold">{student?.first_name} {student?.last_name}, </span><span>posted on {created_at.slice(0, 10)}</span></p>
             <p className="p-3">{parse(body)}</p>
-
             {user?.id === student.id ?
                 <>
                 <div class="inline-flex">
-                    <button onClick={handleDeletePost} class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold text-sm py-1 px-3 rounded-l">Delete</button>
-                    <button onClick={toggleShowForm} class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold text-sm py-1 px-3 rounded-r">Edit</button>
+                    <button onClick={handleDeletePost} class="bg-red-200 hover:bg-yellow text-white font-semibold text-sm py-1 px-3 rounded-l">Delete</button>
+                    <button onClick={toggleShowForm} class="bg-charcoal hover:bg-yellow text-white font-semibold text-sm py-1 px-3 rounded-r">Edit</button>
                 </div>
-
                 <form className={show ? "show" : "hide"} onSubmit={handleUpdatePost}>
-
                     <CKEditor
                         editor={ClassicEditor}
                         data={updatedBody}
@@ -57,16 +54,13 @@ function DiscussionPost({ discussionPost, onDeletePost, onUpdatePost }) {
                             const data = editor.getData()
                             setUpdatedBody(data)
                         }}
-                    /> 
-
-                    <button type='submit' class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold text-sm py-1 px-3 rounded-r mt-4">Submit</button>
-                
-                </form>              
+                    />
+                    <button type='submit' class="bg-charcoal hover:bg-gray-400 text-white font-semibold text-sm py-1 px-3 rounded-r mt-4">Submit</button>
+                </form>
                 </>
             :
                 null
             }
-
         </div>
     )
 }

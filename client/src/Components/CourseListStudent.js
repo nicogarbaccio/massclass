@@ -58,7 +58,6 @@ function CourseListStudent( ){
             })
         };
 
-
     return (
         <div className='min-h-screen bg-slate-200 pt-1'>
             <h1 className='text-4xl font-bold my-8'>Welcome, {user?.first_name}</h1>
