@@ -5,6 +5,7 @@ import { CourseContext } from "../Context/course";
 import { useEffect, useState } from "react";
 import CourseForm from './CourseForm'
 import CourseCard from './CourseCard';
+import { UilPlus } from '@iconscout/react-unicons'
 
 function CourseList( ){
     const { user } = useContext(UserContext)
@@ -41,7 +42,7 @@ function CourseList( ){
                 }
              </div>
             <button onClick={toggleShowForm} className="text-white bg-charcoal hover:bg-yellow focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-lg w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                Add a course
+                <div className='flex items-center justify-center gap-1'><UilPlus size="20" color="#FFFFFF" />Add a course</div>
             </button>
             <div className={show ? "show my-9" : "hide"}> 
                 <CourseForm setCourses={setCourses} courses={courses}/>
