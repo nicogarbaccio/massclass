@@ -37,14 +37,14 @@ function DiscussionPost({ discussionPost, onDeletePost, onUpdatePost }) {
     }
 
     return (
-        <div className="my-7 bg-red-200 p-3">
+        <div className="my-7 bg-yellow p-3">
             <p className='text-sl'><span className="font-bold">{student?.first_name} {student?.last_name}, </span><span>posted on {created_at.slice(0, 10)}</span></p>
             <p className="p-3">{parse(body)}</p>
             {user?.id === student.id ?
                 <>
                 <div class="inline-flex">
-                    <button onClick={handleDeletePost} class="bg-red-200 hover:bg-yellow text-white font-semibold text-sm py-1 px-3 rounded-l">Delete</button>
-                    <button onClick={toggleShowForm} class="bg-charcoal hover:bg-yellow text-white font-semibold text-sm py-1 px-3 rounded-r">Edit</button>
+                    <button onClick={handleDeletePost} class="bg-red-200 hover:bg-red-100 text-white font-semibold text-sm py-1 px-3 rounded-l">Delete</button>
+                    <button onClick={toggleShowForm} class="bg-charcoal hover:bg-skobeloff text-white font-semibold text-sm py-1 px-3 rounded-r">Edit</button>
                 </div>
                 <form className={show ? "show" : "hide"} onSubmit={handleUpdatePost}>
                     <CKEditor

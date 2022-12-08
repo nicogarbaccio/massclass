@@ -68,7 +68,7 @@ function Announcement(){
                 <p>{parse(announcement.body)}</p>
             </div>
             {user?.admin ?
-                <>
+                <div>
                 <button onClick={toggleEdit} className="text-white bg-charcoal hover:bg-yellow focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-3 py-1 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mt-6 block">Edit Announcement</button>
                 <button onClick={handleDeleteAnnouncement} className="text-white bg-red-200 hover:bg-red-100 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-3 py-1 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mt-6 block">Delete Announcement</button>
                 <form onSubmit={handlePatch} className={show ? "show w-1/2 mt-4" : "hide"}>
@@ -83,7 +83,7 @@ function Announcement(){
                     />
                     <button type='submit' className="text-white bg-charcoal hover:bg-yellow focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-3 py-1 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 my-8">Submit</button>
                 </form>
-                </>
+                </div>
             :
                 null
             }
