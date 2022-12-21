@@ -38,4 +38,8 @@ Rails.application.routes.draw do
 
   get '/submissions/:id/grades', to: 'submissions#student_submissions'
 
+  get '*path',
+      to: 'fallback#index',
+      constraints: ->(req) { !req.xhr? && req.format.html? }
+
 end
