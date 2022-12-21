@@ -81,6 +81,7 @@ test:
 #
 production:
   <<: *default
+  url: <%= ENV['DATABASE_URL'] %>
   database: massclass_production
   username: massclass
   password: <%= ENV["MASSCLASS_DATABASE_PASSWORD"] %>
